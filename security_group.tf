@@ -1,0 +1,24 @@
+resource "aws_security_group" "web" {
+  name        = "Murkulu-Web-SG"
+  description = "Allow web traffic to Murkulu"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    description = "Allow HTTP"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "Murkulu-Web-SG"
+  }
+}
